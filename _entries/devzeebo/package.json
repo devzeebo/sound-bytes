@@ -1,0 +1,23 @@
+{
+  "name": "devzeebo-sound-bytes",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:full": "npm run build && npm run convert && npm run spectrogram",
+    "build": "node ./index.js > in.raw",
+    "convert": "docker run --rm -i sox -t raw -r 44100 -b 32 -c 1 -e fl - -t ogg - < in.raw > out.ogg",
+    "spectrogram": "docker run --rm -i sox - -n spectrogram -o - < out.ogg > spectrogram.png"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devzeebo/sound-bytes.git"
+  },
+  "author": "Eric Siebeneich",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/devzeebo/sound-bytes/issues"
+  },
+  "homepage": "https://github.com/devzeebo/sound-bytes#readme"
+}
